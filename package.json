@@ -1,0 +1,16 @@
+{
+  "name": "wetube",
+  "version": "1.0.0",
+  "description": "youtube clone",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcdad3000/wetube.git"
+  },
+  "author": "yjkim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jcdad3000/wetube/issues"
+  },
+  "homepage": "https://github.com/jcdad3000/wetube#readme"
+}
