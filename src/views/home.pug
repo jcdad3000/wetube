@@ -2,8 +2,7 @@ extends base.pug
 include mixins/video
 
 block content 
-    h2 Welcome here you will see the trending video
-    
+       
     each tmp_video in videos
         +video(tmp_video)
     else 
