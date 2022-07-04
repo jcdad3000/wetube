@@ -7,9 +7,7 @@ html(lang="ko")
         header            
             h1=pageTitle
             nav 
-                ul 
-                    li 
-                        a(href="/videos/upload") Upload Video
+                ul                     
                     li  
                         a(href="/") Home
                     li  
@@ -21,6 +19,8 @@ html(lang="ko")
                             a(href = "/my-profile0") #{loggedInUser.name}'s profile
                         li 
                             a(href="/users/edit") Edit Profile
+                        li 
+                            a(href="/videos/upload") Upload Video
 
                     else                 
                         li  
