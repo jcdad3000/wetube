@@ -1,0 +1,15 @@
+extends layout
+
+
+block content
+  h1 Movies!
+  form(action="/filter")
+    input(type="number",name="year",placeholder="Filter by year")
+    input(type="number",name="rating",placeholder="Filter by rating")
+    input(type="submit",value="submit")
+
+  each tmp_movie in movies    
+    a(href="/"+tmp_movie.id)=tmp_movie.title
+    br
+  else  
+    li Sorry Nothing Found
