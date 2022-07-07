@@ -1,0 +1,8 @@
+extends templates/layout
+
+block content 
+  form(method="POST")
+    input(type="string",name="title",placeholder="Title")
+    input(type="string",name="synopsis",placeholder="Synopsis")
+    input(type="string",name="genres",placeholder="Genres")
+    input(type="submit",value="Add Movie")
