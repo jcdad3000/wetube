@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  form(method="POST")
+    input(type="text",name="title",placeholder="Title")
+    input(type="text",name="summary",placeholder="Summary")
+    input(type="number",name="year",placeholder="Year")
+    input(type="number",name="rating",placeholder="Rating")
+    input(type="text",name="genres",placeholder="Genres")
+    input(type="submit",value="Upload Movie")

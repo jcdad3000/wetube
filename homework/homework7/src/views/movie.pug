@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 Movie Title : #{movie.title}
+  p Summary : #{movie.summary}
+  p Rating : #{movie.rating}
+  p Year : #{movie.year}
+  ul Genres
+    each genre in movie.genres
+      li=genre
+  
+  div 
+    a(href=`${movie.id}/edit`) Edit Movie &rarr;
+  div
+    a(href=`${movie.id}/delete`) Delete Movie &rarr;

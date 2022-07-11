@@ -1,0 +1,10 @@
+extends layout
+include mixins/movie
+
+block content  
+
+  h2 Movie List
+  each movie in movies
+    +movieMixin(movie)   
+  else
+    li Sorry Nothing Found
