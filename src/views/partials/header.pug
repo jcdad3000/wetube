@@ -11,7 +11,11 @@ header
                 li 
                     a(href="/users/logout") Logout
                 li 
-                    a(href =`/users/${loggedInUser._id}`) My profile
+                    a(href =`/users/${loggedInUser._id}`) 
+                        if loggedInUser.avatarUrl===""
+                            span 👨🏻
+                        else 
+                            img.header__avatar(src="/"+loggedInUser.avatarUrl)
                 li 
                     a(href="/users/edit") Edit Profile
                 li 
