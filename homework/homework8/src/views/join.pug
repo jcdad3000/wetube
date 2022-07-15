@@ -1,0 +1,11 @@
+extends templates/layout.pug
+
+block content
+  h2 Join page
+  span=errorMessage
+  form(method="POST")
+    input(type="text",name="username",placeholder="Username")
+    input(type="text",name="name",placeholder="Name")
+    input(type="text",name="password",placeholder="password")
+    input(type="text",name="password2",placeholder="password correction")
+    input(type="submit",value="submit")

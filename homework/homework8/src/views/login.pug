@@ -1,0 +1,9 @@
+extends templates/layout
+
+block content
+  h2 Login Page
+  span=errorMessage
+  form(method="POST")
+    input(type="text",name="username",placeholder="Username")    
+    input(type="text",name="password",placeholder="password")
+    input(type="submit",value="submit")
