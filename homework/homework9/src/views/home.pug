@@ -1,0 +1,13 @@
+include mixins/file
+h1 TXT2HTML!
+
+form(method="POST",enctype="multipart/form-data",action="/read")
+  input(type="file",accept=".txt",name="text")
+  input(type="submit",value="Convert!")
+
+ul 
+  each file in files
+    li
+      +file(file)
+  else 
+    span No Text
