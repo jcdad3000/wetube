@@ -6,6 +6,7 @@ const handleStart = async () => {
     audio: true,
     video: true,
   });
+  console.log(stream);
   video.srcObject = stream;
   video.play();
 };
