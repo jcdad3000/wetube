@@ -5,7 +5,7 @@ const videoSchema = new mongoose.Schema({
   description: { type: String, required: true, trim: true, minLength: 1 },
   createdAt: { type: Date, required: true, default: Date.now },
   fileUrl: { type: String, required: true },
-  thumbnailURL: { type: String },
+  thumbUrl: { type: String },
   hashtags: [{ type: String, trim: true }],
   meta: {
     views: { type: Number, default: 0, required: true },
@@ -18,6 +18,10 @@ videoSchema.static("formatHashtags", function (hashtags) {
   return hashtags
     .split(",")
     .map((word) => (word.startsWith("#") ? word : `#${word}`));
+});
+
+videoSchema.static("changePath", function (urlPath) {
+  return urlPath.replace(/\\/g, "/");
 });
 
 const Video = mongoose.model("Video", videoSchema);
