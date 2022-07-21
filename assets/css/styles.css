@@ -250,9 +250,9 @@ input[type=submit],
 .social__btn {
   border-radius: 5px;
   padding: 12px 20px;
-  background-color: white;
-  color: #ff1300;
-  text-align: center;
+  background-color: white !important;
+  color: #ff1300 !important;
+  text-align: center !important;
   cursor: pointer;
   display: block;
   border: none;
@@ -406,4 +406,32 @@ main {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+}
+
+@keyframes goAway {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-5px);
+    opacity: 0;
+  }
+}
+.message {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 10px;
+  max-width: 200px;
+  padding: 10px 20px;
+  border-radius: 10000px;
+  text-align: center;
+  animation: goAway 0.5s ease-in-out forwards;
+  animation-delay: 3s;
+}
+.message.error {
+  background-color: tomato;
+  color: white;
 }
