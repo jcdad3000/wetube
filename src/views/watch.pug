@@ -1,6 +1,5 @@
 extends base.pug
 
-
 block content 
     div#videoContainer(data-id=video._id)
         video(src="/"+video.fileUrl)
@@ -32,5 +31,6 @@ block content
                 textarea(cols="30",rows="10",placeholder="Write a nice Comment")
                 button Add Comment
 block scripts
-    script(src="/static/js/videoPlayer.js")
-    script(src="/static/js/commentSection.js")
+    script(src="/static/js/videoPlayer.js") 
+    if loggedIn   
+        script(src="/static/js/commentSection.js")
