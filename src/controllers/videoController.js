@@ -1,7 +1,7 @@
 import { restart } from "nodemon";
 import User from "../models/User";
 import Video from "../models/Video";
-
+import Comment from "../models/Comment";
 export const home = async (req, res) => {
   try {
     const videos = await Video.find({})
@@ -14,7 +14,7 @@ export const home = async (req, res) => {
 };
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const video = await Video.findById(id).populate("owner");
+  const video = await Video.findById(id).populate("owner").populate("comments");
 
   if (video === null) {
     return res.render("404", { pageTitle: "Video not found." });
@@ -131,9 +131,27 @@ export const registerView = async (req, res) => {
   return res.sendStatus(200);
 };
 
-export const createComment = (req, res) => {
-  console.log(req.params);
-  console.log(req.body);
-  console.log(req.body.text);
-  return res.end();
+export const createComment = async (req, res) => {
+  const {
+    session: { user },
+    body: { text },
+    params: { id },
+  } = req;
+
+  const video = await Video.findById(id);
+
+  if (!video) {
+    return res.sendStatus(404);
+  }
+
+  const comment = await Comment.create({
+    text,
+    owner: user._id,
+    video: id,
+  });
+
+  video.comments.push(comment._id);
+  video.save();
+
+  return res.sendStatus(201);
 };
