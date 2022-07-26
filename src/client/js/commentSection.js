@@ -1,8 +1,5 @@
-import { deleteComment } from "../../controllers/videoController";
-
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
-const deleteBtns = document.querySelectorAll("#comment__deleteBtn");
 
 const addComment = (text) => {
   const videoComments = document.querySelector(".video__comments ul");
@@ -43,28 +40,3 @@ const handleSubmit = async (event) => {
 if (form) {
   form.addEventListener("submit", handleSubmit);
 }
-
-const deleteSelectComment = (Id) => {
-  console.log("hello");
-};
-
-const handleDelete = async (event) => {
-  const selectComment = event.srcElement.parentNode;
-  const commentId = selectComment.dataset.id;
-
-  console.log(commentId);
-
-  const { status } = await fetch(`/api/videos/${commentId}/delete`, {
-    method: "DELETE",
-  });
-
-  console.log(selectComment);
-  console.log(commentId);
-  //if (status === 200) {
-  //  deleteSelectComment(commentId);
-  //}
-};
-
-deleteBtns.forEach((deleteBtn) => {
-  deleteBtn.addEventListener("click", handleDelete);
-});
