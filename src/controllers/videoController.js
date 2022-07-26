@@ -2,6 +2,7 @@ import { restart } from "nodemon";
 import User from "../models/User";
 import Video from "../models/Video";
 import Comment from "../models/Comment";
+import session from "express-session";
 export const home = async (req, res) => {
   try {
     const videos = await Video.find({})
@@ -159,13 +160,19 @@ export const createComment = async (req, res) => {
 export const deleteComment = async (req, res) => {
   const {
     params: { id },
+    session: { user },
   } = req;
 
   const comment = await Comment.findById(id);
   const video = await Video.findById(comment.video._id);
+  const sessionId = user._id;
 
   if (!comment) {
     return res.sendStatus(404);
+  }
+
+  if (String(sessionId) != String(comment.owner._id)) {
+    return sendStatus(404);
   }
 
   for (var i = 0; i < video.comments.length; i++) {
