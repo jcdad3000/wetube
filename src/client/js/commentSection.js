@@ -2,16 +2,18 @@ const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
 const deleteBtns = document.querySelectorAll("#deleteBtn");
 
-const addComment = (text) => {
+const addComment = (text, id) => {
   const videoComments = document.querySelector(".video__comments ul");
   const newComment = document.createElement("li");
   newComment.className = "video__comment";
+  newComment.dataset.id = id;
   const icon = document.createElement("i");
   icon.className = "fas fa-comment";
   const span = document.createElement("span");
   span.innerText = ` ${text}`;
   const delBtn = document.createElement("button");
   delBtn.innerText = "X";
+  delBtn.addEventListener("click", handleDelete);
   newComment.appendChild(icon);
   newComment.appendChild(span);
   newComment.appendChild(delBtn);
@@ -26,7 +28,7 @@ const handleSubmit = async (event) => {
   if (text === "") {
     return;
   }
-  const { status } = await fetch(`/api/videos/${videoId}/comment`, {
+  const response = await fetch(`/api/videos/${videoId}/comment`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -34,9 +36,11 @@ const handleSubmit = async (event) => {
     body: JSON.stringify({ text }),
   });
 
-  textarea.value = "";
-  if (status === 201) {
-    addComment(text);
+  if (response.status === 201) {
+    textarea.value = "";
+
+    const { newCommentId } = await response.json();
+    addComment(text, newCommentId);
   }
   //window.location.reload();
 };
@@ -44,10 +48,6 @@ const handleSubmit = async (event) => {
 if (form) {
   form.addEventListener("submit", handleSubmit);
 }
-
-const deleteSelectComment = (Id) => {
-  console.log("hello");
-};
 
 const handleDelete = async (event) => {
   const selectComment = event.srcElement.parentNode;
@@ -59,6 +59,8 @@ const handleDelete = async (event) => {
   const { status } = await fetch(`/api/videos/${commentId}/delete`, {
     method: "DELETE",
   });
+
+  window.location.reload();
 };
 
 deleteBtns.forEach((deleteBtn) => {
