@@ -9,6 +9,6 @@ import app from "./server";
 
 const PORT = 4000;
 
-app.listen(PORT, () =>
+app.listen(process.env.PORT || PORT, () =>
   console.log(`Server listening on port http://localhost:${PORT}`)
 );
